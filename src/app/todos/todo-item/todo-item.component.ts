@@ -56,4 +56,8 @@ export class TodoItemComponent {
     );
   };
 
+  eliminar(){
+    this.store.dispatch(actions.borrar({id:this.todo.id}))
+  }
+
 }
