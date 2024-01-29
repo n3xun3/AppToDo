@@ -5,6 +5,7 @@ import { TodoFooterComponent } from './todo-footer/todo-footer.component';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoPageComponent } from './todo-page/todo-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,6 +19,8 @@ import { TodoPageComponent } from './todo-page/todo-page.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[TodoPageComponent]
 })
