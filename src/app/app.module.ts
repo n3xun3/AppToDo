@@ -8,7 +8,7 @@ import {enviroment} from '../enviroments/enviroment';
 // NgRx
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import { todoReducer } from './todos/todo.reducer';
+import { appReducers } from './app.reducer';
 
 
 
@@ -18,7 +18,7 @@ import { todoReducer } from './todos/todo.reducer';
     BrowserModule,
     CommonModule,
     TodoModule,
-    StoreModule.forRoot({todos: todoReducer}),
+    StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: enviroment.production
