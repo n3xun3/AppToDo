@@ -29,12 +29,15 @@ export class TodoItemComponent {
     this.txtInput = new FormControl(this.todo.texto, Validators.required);
 
     this.chkCompletado.valueChanges.subscribe(valor =>{
+      // Lanzamos el action que cambia la tarea a compeltada o no
       this.store.dispatch(actions.toogle({id: this.todo.id}))
     } )
   }
 
   editar(){
     this.editando = true;
+    // le damos el valor de todo existente
+    this.txtInput.setValue(this.todo.texto);
     setTimeout(()=>{
       this.txtInputFisico.nativeElement.select();
     },1)
@@ -42,6 +45,15 @@ export class TodoItemComponent {
 
   terminarEdicion(){
     this.editando = false;
-  }
+    if(this.txtInput.invalid){ return;}
+    // Si no hay cambio en el texto
+    if(this.txtInput.value === this.todo.texto){return;}
+
+    this.store.dispatch(actions.editar({
+      id: this.todo.id,
+      texto: this.txtInput.value
+    })
+    );
+  };
 
 }

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { crear, toogle } from './todo.action';
+import { crear, editar, toogle } from './todo.action';
 import { Todo } from './models/todo.model';
 
 export const initialState: Todo[] = [
@@ -24,6 +24,20 @@ const _todoReducer = createReducer(initialState,
           completado: !todo.completado
         }
       } else { return todo; }
+
+    });
+  }),
+  // Editamos el todo muy parecido al toggle pero añadimos el texto para cambiar el valor del todo
+  on(editar, (state, { id, texto } ) => {
+
+    return state.map( todo =>{
+      // Comprobamos que el id es el mismo y cambiamos solo el valor completado sin mutar
+      if(todo.id === id){
+        return {
+          ...todo,
+          texto: texto
+        }
+      } else { return todo; } 
 
     });
   }),
